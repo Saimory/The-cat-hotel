@@ -1,0 +1,248 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Cat Hotel API",
+    "description": "API для управления гостиницей для кошек",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/api/v1/cats": {
+      "post": {
+        "summary": "Создать новую кошку",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string", "description": "Имя кошки", "example": "Мурка" },
+                "age": { "type": "integer", "description": "Возраст кошки", "example": 3 },
+                "breed": { "type": "string", "description": "Порода кошки", "example": "Сиамская" },
+                "ownerId": { "type": "string", "description": "ID владельца кошки", "example": "61d3b0f6e4b0b326c8d9c3b0" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Кошка успешно добавлена" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      },
+      "get": {
+        "summary": "Получить всех кошек",
+        "responses": {
+          "200": { "description": "OK" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      }
+    },
+    "/api/v1/cats/{id}": {
+      "get": {
+        "summary": "Получить кошку по ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "200": { "description": "OK" },
+          "404": { "description": "Кошка не найдена" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      },
+      "put": {
+        "summary": "Обновить данные кошки",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string", "description": "Имя кошки", "example": "Мурка" },
+                "age": { "type": "integer", "description": "Возраст кошки", "example": 3 },
+                "breed": { "type": "string", "description": "Порода кошки", "example": "Сиамская" },
+                "ownerId": { "type": "string", "description": "ID владельца кошки", "example": "61d3b0f6e4b0b326c8d9c3b0" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Кошка обновлена" },
+          "404": { "description": "Кошка не найдена" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      },
+      "delete": {
+        "summary": "Удалить кошку по ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "204": { "description": "Кошка успешно удалена" },
+          "404": { "description": "Кошка не найдена" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      }
+    },
+    "/api/v1/users": {
+      "post": {
+        "summary": "Создать нового пользователя",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string", "description": "Имя пользователя", "example": "Иван Иванов" },
+                "contact_info": { "type": "string", "description": "Контактная информация", "example": "ivan@example.com" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Пользователь успешно добавлен" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      },
+      "get": {
+        "summary": "Получить всех пользователей",
+        "responses": {
+          "200": { "description": "OK" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      }
+    },
+    "/api/v1/users/{id}": {
+      "get": {
+        "summary": "Получить пользователя по ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "200": { "description": "OK" },
+          "404": { "description": "Пользователь не найден" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      },
+      "delete": {
+        "summary": "Удалить пользователя по ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "204": { "description": "Пользователь успешно удален" },
+          "404": { "description": "Пользователь не найден" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      }
+    },
+        "/api/v1/bookings": {
+      "post": {
+        "summary": "Создать бронирование",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "start_date": { "type": "string", "format": "date", "example": "2023-12-01" },
+                "end_date": { "type": "string", "format": "date", "example": "2023-12-10" },
+                "cat_id": { "type": "string", "example": "61d3b0f6e4b0b326c8d9c3b1" },
+                "room_id": { "type": "string", "example": "61d3b0f6e4b0b326c8d9c3c2" }
+              },
+              "required": ["start_date", "end_date", "cat_id", "room_id"]
+            }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Бронирование создано" },
+          "400": { "description": "Некорректные данные (комната занята, неправильные даты и т.д.)" },
+          "404": { "description": "Кошка не найдена" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      }
+    },
+    "/api/v1/bookings/{id}": {
+      "get": {
+        "summary": "Получить бронирование по ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "200": { "description": "OK" },
+          "404": { "description": "Бронирование не найдено" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      },
+      "put": {
+        "summary": "Обновить бронирование",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "start_date": { "type": "string", "format": "date", "description": "Дата начала", "example": "2023-12-01" },
+                "end_date": { "type": "string", "format": "date", "description": "Дата окончания", "example": "2023-12-10" },
+                "cat_id": { "type": "string", "description": "ID кошки", "example": "61d3b0f6e4b0b326c8d9c3b1" },
+                "user_id": { "type": "string", "description": "ID пользователя", "example": "61d3b0f6e4b0b326c8d9c3b0" },
+                "room_id": { "type": "string", "description": "ID комнаты", "example": "61d3b0f6e4b0b326c8d9c3c2" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Бронирование обновлено" },
+          "404": { "description": "Бронирование не найдено" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      },
+      "delete": {
+        "summary": "Удалить бронирование по ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "204": { "description": "Бронирование успешно удалено" },
+          "404": { "description": "Бронирование не найдено" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      }
+    },
+    "/api/v1/rooms": {
+      "get": {
+        "summary": "Получить все комнаты",
+        "responses": {
+          "200": { "description": "OK" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      }
+    },
+    "/api/v1/rooms/{id}": {
+      "get": {
+        "summary": "Получить комнату по ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "200": { "description": "OK" },
+          "404": { "description": "Комната не найдена" },
+          "500": { "description": "Ошибка сервера" }
+        }
+      }
+    }
+  }
+}

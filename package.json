@@ -1,0 +1,26 @@
+{
+  "name": "my-api-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "swagger-autogen": "node swagger.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "migrate-mongo": "^11.0.0",
+    "mongoose": "^8.8.2",
+    "mongoose-sequence": "^6.0.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "swagger-autogen": "^2.23.7"
+  }
+}
